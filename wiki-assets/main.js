@@ -2,19 +2,21 @@
 
 window.contentfile = '/pages/Terraria Wiki.html'
 var history = [];
-const pagefind = await import("/_pagefind/pagefind.js");
-document.addEventListener('click', (e) => {
+document.addEventListener('click', async (e) => {
     // 查找最近的 a 标签
     const link = e.target.closest('a');
     if (!link) return;
-    if (link && link.href && link.href.startsWith('http')) {
-        return;
-    }
+
     const title = link.getAttribute('title');
     const anchor = link.getAttribute('anchor') || '';
-
+    const href = link.getAttribute('href')||'';
+    if (href.startsWith('http')) {
+        e.preventDefault();
+        await window.__TAURI__.shell.open(href);
+        return;
+    }
     // 如果是站内链接（有 title 属性且没有 target="_blank"）
-    if (title && !link.target) {
+    if (title && !href) {
         redirect(title, anchor);
     }
 });

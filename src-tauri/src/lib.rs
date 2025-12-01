@@ -1,6 +1,9 @@
 use std::fs;
 use tauri::{
-    http::{header::{ACCESS_CONTROL_ALLOW_ORIGIN, CONTENT_TYPE}, Response, StatusCode},
+    http::{
+        header::{ACCESS_CONTROL_ALLOW_ORIGIN, CONTENT_TYPE},
+        Response, StatusCode,
+    },
     path::BaseDirectory,
     Manager,
 };
@@ -8,15 +11,15 @@ use tauri::{
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        
+        .plugin(tauri_plugin_shell::init())
         // 注册自定义协议 "wiki://"
         .register_uri_scheme_protocol("wiki", |ctx, request| {
             // 1. 获取 App Handle 用于路径解析
             let app_handle = ctx.app_handle();
-            
+
             // 2. 解析请求的 URL 路径
             let uri_path = request.uri().path();
-            
+
             // 处理根路径，默认重定向到 index.html
             // 例如: wiki://localhost/ -> index.html
             let path_str = if uri_path == "/" {
@@ -36,8 +39,8 @@ pub fn run() {
             // 这会查找 "wiki-assets/<decoded_path>" (开发环境)
             // 或安装目录下的 "resources/wiki-assets/<decoded_path>" (生产环境)
             let resource_path_result = app_handle.path().resolve(
-                format!("../wiki-assets/{}", decoded_path), 
-                BaseDirectory::Resource
+                format!("../wiki-assets/{}", decoded_path),
+                BaseDirectory::Resource,
             );
 
             // 初始化响应构建器
