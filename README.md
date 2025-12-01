@@ -18,9 +18,9 @@
 
 ## 📸 预览图
 
-![image-20251201145526397](C:\Users\BBK\AppData\Roaming\Typora\typora-user-images\image-20251201145526397.png)
+![image-20251201145526397](Screenshot\image-20251201145526397.png)
 
-![image-20251201145747776](C:\Users\BBK\AppData\Roaming\Typora\typora-user-images\image-20251201145747776.png)
+![image-20251201145747776](Screenshot\image-20251201145747776.png)
 
 
 
@@ -37,7 +37,7 @@
 **💻 如果您想在本地构建或修改项目，请遵循以下步骤：** 
 
 - 将此储存库克隆到本地
-- 将**wiki-assets.zip**解压到**wiki-assets**文件夹。
+- 下载**Release**中的最新的**wiki-assets.zip**并将其解压到**wiki-assets**文件夹。
 - wiki-assets.zip包含了大部分[Wiki](https://terraria.wiki.gg/zh/wiki/Terraria_Wiki)的原始内容和资源文件。
 
 
